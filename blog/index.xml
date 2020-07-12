@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Blogs on nevstokes.com</title>
+    <link>https://nevstokes.com/blog/</link>
+    <description>Recent content in Blogs on nevstokes.com</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-gb</language>
+    <lastBuildDate>Wed, 03 Jun 2020 20:13:38 +0000</lastBuildDate>
+    
+	<atom:link href="https://nevstokes.com/blog/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Starting Afresh</title>
+      <link>https://nevstokes.com/blog/starting-afresh/</link>
+      <pubDate>Wed, 03 Jun 2020 20:13:38 +0000</pubDate>
+      
+      <guid>https://nevstokes.com/blog/starting-afresh/</guid>
+      <description>At some point, thanks to various harddrive failures and misplaced USB sticks, I lost the backups of my old Wordpress site. Let&amp;rsquo;s face it, its demise is certainly no great loss for humanity. After a long break, what better time than lockdown to restart the cathartic outpourings?
+Hopefully my writing will be a tad more focussed that my previous inane ramblings - although there&amp;rsquo;s little doubt that those will remain. I plan on writing more about my work; development and engineering, touching on various languages, containers, cloud architectures, tools and practices.</description>
+    </item>
+    
+  </channel>
+</rss>

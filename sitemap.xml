@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+  xmlns:xhtml="http://www.w3.org/1999/xhtml">
+  
+  <url>
+    <loc>https://nevstokes.com/blog/</loc>
+    <lastmod>2020-06-03T20:13:38+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://nevstokes.com/</loc>
+    <lastmod>2020-06-03T20:13:38+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://nevstokes.com/blog/starting-afresh/</loc>
+    <lastmod>2020-06-03T20:13:38+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://nevstokes.com/page/about-me/</loc>
+  </url>
+  
+  <url>
+    <loc>https://nevstokes.com/categories/</loc>
+  </url>
+  
+  <url>
+    <loc>https://nevstokes.com/page/colophon/</loc>
+  </url>
+  
+  <url>
+    <loc>https://nevstokes.com/page/</loc>
+  </url>
+  
+  <url>
+    <loc>https://nevstokes.com/tags/</loc>
+  </url>
+  
+</urlset>
