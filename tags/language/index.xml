@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>language on nevstokes.com</title>
+    <link>https://nevstokes.com/tags/language/</link>
+    <description>Recent content in language on nevstokes.com</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-gb</language>
+    <lastBuildDate>Fri, 15 May 2020 21:08:27 +0000</lastBuildDate>
+    
+	<atom:link href="https://nevstokes.com/tags/language/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>The Linear Progression of Time</title>
+      <link>https://nevstokes.com/blog/2020-05-15-linear-time/</link>
+      <pubDate>Fri, 15 May 2020 21:08:27 +0000</pubDate>
+      
+      <guid>https://nevstokes.com/blog/2020-05-15-linear-time/</guid>
+      <description>It&amp;rsquo;s easy to take one&amp;rsquo;s own view of the world as a given but questioning your cutural assumptions can make for some interesting contortions.</description>
+    </item>
+    
+  </channel>
+</rss>

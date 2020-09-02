@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="en"><meta charset="utf-8">
+<title>Make It So | nevstokes.com</title>
+
+<link rel="preload" as="font" href="/fonts/quicksand-300-latin-ext.woff2" type="font/woff2" crossorigin="anonymous">
+
+<link rel="canonical" href="https://nevstokes.com/blog/2020-07-09-make-it-so/" />
+
+
+
+<link rel="stylesheet" href="/css/style.css">
+<link rel="stylesheet" href="/css/syntax.css">
+
+<meta name="description" content="Personal site">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, user-scalable=yes, viewport-fit=cover">
+<a href="#content">Skip to main content</a>
+
+    <main><header>
+    <a href="/">nevstokes.com</a>
+    <nav>
+        
+            <a title="Blog" href="/blog/">Blog</a>
+        
+            <a title="About Me" href="/page/about-me/">About Me</a>
+        
+            <a title="Accessibility" href="/page/accessibility/">Accessibility</a>
+        
+            <a title="Colophon" href="/page/colophon/">Colophon</a>
+        
+    </nav>
+</header>
+
+
+    <article id="content">
+        <h1>Make It So</h1>
+
+        
+            <div class="meta">
+    <p><svg aria-label="Posted on"><use xlink:href="/symbol-defs.svg#icon-calendar"></use></svg> Friday, July 31, 2020</p>
+
+    <p><svg aria-label="Reading time"><use xlink:href="/symbol-defs.svg#icon-watch"></use></svg> 5 minutes</p>
+</div>
+
+        
+
+        <figure>
+    <blockquote>Something is wrong if workers do not look around each day, find things that are tedious or boring, and then rewrite the procedures.</blockquote>
+    <figcaption>
+        &mdash; Taiichi Ohno
+    </figcaption>
+</figure>
+
+<!--
+
+* image building
+And they're all made out of ticky-tacky
+And they all look just the same
+Little Boxes, Malvina Reynolds
+
+* containerised buildchain
+There's a way to do it better -- find it.
+- Thomas A. Edison
+Different version of npm ci & local
+
+* makepacks - rename (http://makepack.sourceforge.net/)
+"It Looks Like You're Doing DevOps"
+Progress isn't made by early risers. It's made by lazy men trying to find easier ways to do something.
+Robert A. Heinlein
+
+* automated automation (cookie cutter & makepack subtree)
+Iteration, like friction, is likely to generate heat instead of progress.
+George Eliot
+(Copy, paste, tweak, before you know it, multiple projects that are all just slightly different.)
+
+Paved roads, developer adoption
+"The road to hell is paved with good intentions", A Hand-book of Proverbs, Henry G. Bohn
+
+* CI & CD sitting in a tree
+* need to know (config management & confd)
+* provenance / software bill of materials
+* git
+* semver & semantic release / everything's a feature
+* code reviews
+* meetings
+
+* blog build process
+
+If you are five minutes early, you are already ten minutes late. Vince Lombardi
+
+
+-->
+<p>In recent years there&rsquo;s been something of a resurgence in using a <code>Makefile</code> for project orchestration.</p>
+<p>established &ndash; and embedded: as old as me
+portable if POSIX: make is ubiquitous (Gnu) &ndash; watch out for traps Ubuntu <code>dash</code>
+<a href="https://www.gnu.org/prep/standards/html_node/Utilities-in-Makefiles.html#Utilities-in-Makefiles">https://www.gnu.org/prep/standards/html_node/Utilities-in-Makefiles.html#Utilities-in-Makefiles</a></p>
+<p>repository isn&rsquo;t littered with individual scripts.
+provides a self-documenting single point of entry. default env vars overriden by CI/CD. Semantic sugar that gives an immediate contextual hint as what is going on in plain language.</p>
+<p>efficient with smart dependency tracking.</p>
+<p>Not locked in to any CI or plugins. Doesn&rsquo;t matter if the project is using Jenkins, GitHub Actions or Travis, defer to Make.</p>
+<p>Also can be used with git hooks to implement some preventative and corrective actions during local development and get faster feedback loops or on the server-side of the version control system to implement GitOps.</p>
+<p>IDE-level tooling.</p>
+<p>Use the fastest tools earliest in the git hook lifecycle.</p>
+<p>Some examples of potential targets and use-cases:</p>
+<h2 id="client-side-hooks">Client-side hooks</h2>
+<details open>
+    <summary><code>pre-commit</code></summary>
+    <dl>
+        <dt><code>make nice</code></dt>
+        <dd>Quick linting and code style enforcement.</dd>
+        <dt><code>make safe</code></dt>
+        <dd>Scan for security anti-patterns and secrets -- like passwords, tokens or API keys -- that may have been accidentally added to the codebase.</dd>
+    </dl>
+</details>
+<details open>
+    <summary><code>commit-msg</code></summary>
+    <dl>
+        <dt><code>make commit</code></dt>
+        <dd>Check that the commit message meets any mandated requirements.</dd>
+    </dl>
+</details>
+<details open>
+    <summary><code>pre-push</code></summary>
+    <dl>
+        <dt><code>make checks</code></dt>
+        <dd>Run auditing or compliance tasks such as checking for accessibility issues, licence violations, and outdated or vulnerable dependencies.</dd>
+    </dl>
+</details>
+<h2 id="server-side-hooks">Server-side hooks</h2>
+<details open>
+    <summary><code>pre-receive</code></summary>
+    <dl>
+        <dt><code>make sure</code></dt>
+        <dd>Developers are free to disable their local hooks. Run those same commands to double check and fail early should anything not be right.</dd>
+    </dl>
+</details>
+<details open>
+    <summary><code>post-receive</code></summary>
+    <dl>
+        <dt><code>make tests</code></dt>
+        <dd>Run functional tests: unit, contract, mocked integration, regression, and mutation as applicable.</dd>
+        <dt><code>make decision</code></dt>
+        <dd>Quality gates. Get a go / no go to proceed further.</dd>
+        <dt><code>make build</code></dt>
+        <dd>Create an OCI container image or generate a static website archive.</dd>
+        <dt><code>make infrastructure</code></dt>
+        <dd>Provision resources as defined by declarative infrastructure as code.</dd>
+        <dt><code>make deployment</code></dt>
+        <dd>Once all the preceeding steps have been completed, the artifacts can be pushed with confidence. Run transactional end-to-end tests along with non-functional tests such as for security and performance.</dd>
+        <dt><code>make release</code></dt>
+        <dd>Just as an automated blue / green deployment gives an opportunity to gradually deploy and rollback if any errors are detected, a seperate progressive release strategy provides a safety net should anything go awry at the final step.</dd>
+        <dt><code>make documentation</code></dt>
+        <dd>Generate and publish API specifications.</dd>
+        <dt><code>make comms</code></dt>
+        <dd>Circulate release notes or make an announcement on a messaging platform.</dd>
+    </dl>
+</details>
+<p>These portable containerised abstractions can be used in any CI system with <code>bash</code> / <code>make</code>. No longer relying on Jenkins plugins or third-party scripts. Just as easily run from the command line.</p>
+<p>Note that there is no direct implication of the underlying technologies used here; it&rsquo;s completely language independant and tooling agnostic. The responsibility for implementing the work lies with the projects using this framework.</p>
+<p>That said, quite a bit can be inferred from file-based conventions &ndash; not necessarily directly tied to our new project templates. Taking inspiration from Heroku&rsquo;s concept of Buildpacks &ndash; which were designed to handle deployments at scale &ndash; it&rsquo;s possible to construct a matrix of trigger files and corresponding tools.</p>
+<p>A set of predefined independant tasks which can be run in parallel at each stage in the process, where any one of which can stop the pipeline should it find an issue.</p>
+<div tabindex="0" aria-role="region" aria-label="Pipeline stage tooling matrix">
+    <table>
+        <thead>
+            <tr>
+                <th></th>
+                <th><code>nice</code></th>
+                <th><code>safe</code></th>
+                <th><code>checks</code></th>
+                <th><code>tests</code></th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td><code>package.json</code></td>
+                <td><code>prettier</code></td>
+                <td><code>eslint-plugin-security</code></td>
+                <td><code>resolve-audit</code></td>
+                <td><code>stryker</code></td>
+            </tr>
+                <tr><td><code>requirements.txt</code></td>
+                <td><code>flake8</code></td>
+                <td><code>bandit</code></td>
+                <td><code>safety</code></td>
+                <td><code>mutmut</code></td>
+            </tr>
+            <tr>
+                <td><code>Dockerfile</code></td>
+                <td><code>hadolint</code></td>
+                <td><code>semgrep</code></td>
+                <td><code>snyk</code></td>
+                <td><code>inspec</code></td>
+            </tr>
+            <tr>
+                <td><code>cdk.json</code></td>
+                <td><code>eslint</code></td>
+                <td><code>cfn_nag</code></td>
+                <td><code>opa</code></td>
+                <td><code>jest</code></td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+<p>This is just by way of some minimal examples. In reality there could be layers or combinations of tools applied at each stage. A more fine-grained control of what to do &ndash; and when &ndash; can be achieved by adding targets to appropriate lists based on the presence of individual configuration files, such as:</p>
+<ul>
+<li><code>.eslintrc.js</code></li>
+<li><code>.prettierrc</code></li>
+<li><code>cypress.json</code></li>
+<li><code>jest.config.js</code></li>
+</ul>
+<p>The point is that the developers now don&rsquo;t have to think about a lot of this stuff; it&rsquo;s taken care of for them and they can focus on what they want to do &ndash; namely writing quality code. Pave the roads and provide secure defaults for the quickest, smoothest paths to production.</p>
+<p>We have alignment on the small selection of languages that we&rsquo;re using. Gives continuity and allows us to plan for recruitment and maintenance.</p>
+<p>Alignment not only on frameworks and libraries but also approach and tooling &ndash; with a caveat of freedom of OS and IDE; developers know how they work best. That congitive dissonance of being forced to use what amounts to an alien environment is jarring, will slow them down and potentially breed resentment. Yes, devs care. Plugins, extensions &ndash; whatever they&rsquo;re called exist for most combinations. Get that immediate feedback. Even faster than git hooks.</p>
+<p>Enforce invariants: what should always or never be true?
+e.g. unused regions, 0.0.0.0/0 &ndash; detect manual console changes
+<a href="https://arkadiyt.com/2019/11/12/detecting-manual-aws-console-actions/">https://arkadiyt.com/2019/11/12/detecting-manual-aws-console-actions/</a></p>
+<p>IDE plugins: DevSkim &amp; Vuln VSCode</p>
+<blockquote>
+<p>If one of your developers doesn&rsquo;t have node installed but modifies a JavaScript file, pre-commit automatically handles downloading and building node to run eslint without root.</p>
+</blockquote>
+<p>Or you can just run a container. Get consistent versioning and upgrade path.</p>
+<p>Do as much as you can locally to get that feedback before pushing for the CI to give things a deeper inspection.</p>
+<!--
+
+Scaled security
+Mindset:
+automate and streamline
+guardrails not gatekeepers
+high signal low noise tooling
+get adopting by making the new way better than before
+enforce wrappers so that the secure way is now the default
+minimise friction, fit with existing tools & workflows
+self-service
+not individual bug squashing but removing entire classes of bugs
+secure defaults
+paved roads (Netflix) for secrets, auth, encryption
+taxonomy -- not checklist
+automated SOC runbooks
+automated least privilege (Policy Sentry & RepoKid) -->
+
+    </article>
+
+    
+    <nav>
+    
+        <a href="https://nevstokes.com/blog/2020-07-21-herring-road/" title="The Herring Road">&laquo; Previous Post</a>
+    
+    
+        <a href="https://nevstokes.com/blog/2020-08-15-wfh/" title="Working From Home isn&#39;t Working for Me">Next Post &raquo;</a>
+    
+    </nav>
+    
+<footer>
+    <ul class="container" aria-label="Social Links">
+        <li>
+            <a href="https://twitter.com/nevstokes" title="Twitter" target="_blank" rel="noopener noreferrer">
+                <svg><use xlink:href="/symbol-defs.svg#icon-twitter"></use></svg>
+                <span>My Twitter Feed</span>
+            </a>
+        </li>
+        <li>
+            <a href="https://keybase.io/nevstokes" title="Keybase" target="_blank" rel="noopener noreferrer">
+                <svg><use xlink:href="/symbol-defs.svg#icon-keybase"></use></svg>
+                <span>My Keybase Identity</span>
+            </a>
+        </li>
+        <li>
+            <a href="https://github.com/nevstokes" title="GitHub" target="_blank" rel="noopener noreferrer">
+                <svg><use xlink:href="/symbol-defs.svg#icon-github"></use></svg>
+                <span>My GitHub Repositories</span>
+            </a>
+        </li>
+        <li>
+            <a href="https://linkedin.com/in/nevstokes" title="LinkedIn" target="_blank" rel="noopener noreferrer">
+                <svg><use xlink:href="/symbol-defs.svg#icon-linkedin"></use></svg>
+                <span>My LinkedIn Profile</span>
+            </a>
+        </li>
+        <li>
+            <a href="https://stackoverflow.com/users/224639/nev-stokes" title="StackOverflow" target="_blank" rel="noopener noreferrer">
+                <svg><use xlink:href="/symbol-defs.svg#icon-stackoverflow"></use></svg>
+                <span>My StackOverflow Activity</span>
+            </a>
+        </li>
+        <li>
+            <a href="https://www.strava.com/athletes/nevstokes" title="Strava" target="_blank" rel="noopener noreferrer">
+                <svg><use xlink:href="/symbol-defs.svg#icon-strava"></use></svg>
+                <span>My Strava Activities</span>
+            </a>
+        </li>
+        <li>
+            <a href="https://nevstokes.com/index.xml" title="RSS" target="_blank" rel="noopener noreferrer">
+                <svg><use xlink:href="/symbol-defs.svg#icon-rss"></use></svg>
+                <span>This Blog's RSS Feed</span>
+            </a>
+        </li>
+    </ul>
+</footer>
+</main>
+</html>

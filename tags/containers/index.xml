@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>containers on nevstokes.com</title>
+    <link>https://nevstokes.com/tags/containers/</link>
+    <description>Recent content in containers on nevstokes.com</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-gb</language>
+    <lastBuildDate>Wed, 08 Jul 2020 20:42:16 +0000</lastBuildDate>
+    
+	<atom:link href="https://nevstokes.com/tags/containers/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Think of Your Environment</title>
+      <link>https://nevstokes.com/blog/2020-07-05-environment/</link>
+      <pubDate>Wed, 08 Jul 2020 20:42:16 +0000</pubDate>
+      
+      <guid>https://nevstokes.com/blog/2020-07-05-environment/</guid>
+      <description>No, I&amp;rsquo;m not talking about green issues here, but rather the variable context to which an operating system&amp;rsquo;s shell is exposed.</description>
+    </item>
+    
+  </channel>
+</rss>
