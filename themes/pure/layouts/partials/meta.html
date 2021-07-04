@@ -1,5 +1,0 @@
-<div class="meta">
-    <p><svg aria-label="Posted on"><use xlink:href="/symbol-defs.svg#icon-calendar"></use></svg> {{ .Site.Params.dateformat | .Date.Format }}</p>
-
-    <p><svg aria-label="Reading time"><use xlink:href="/symbol-defs.svg#icon-watch"></use></svg> {{ .ReadingTime }} {{ cond (eq .ReadingTime 1) "minute" "minutes" }}</p>
-</div>

@@ -1,5 +1,0 @@
-<picture>
-	<source srcset="images/{{ .Get "name" }}.avif" type="image/avif">
-	<source srcset="images/{{ .Get "name" }}.webp" type="image/webp">
-	<img src="images/{{ .Get "name" }}.jpg" alt="{{ .Get "description" | default "" }}">
-</picture>
