@@ -1,0 +1,27 @@
+{{ define "main" }}
+    <ol id="content">
+    {{ range .Paginator.Pages }}
+        <li>
+            <article>
+                {{ partial "entry.html" . }}
+            </article>
+        </li>
+    {{ end }}
+    </ol>
+
+    {{ if or (.Paginator.HasPrev) (.Paginator.HasNext) }}
+        <nav>
+            {{ if .Paginator.HasNext }}
+                <a href="{{ .URL }}page/{{ .Paginator.Next.PageNumber }}/">&laquo; Older Posts</a>
+            {{ else }}
+                <span aria-disabled="true">&laquo; Older Posts</span>
+            {{ end }}
+
+            {{ if .Paginator.HasPrev }}
+                <a href="{{ .URL }}page/{{ .Paginator.Prev.PageNumber }}/">Newer Posts &raquo;</a>
+            {{ else }}
+                <span aria-disabled="true">Newer Posts &raquo;</span>
+            {{ end }}
+        </nav>
+    {{ end }}
+{{ end }}

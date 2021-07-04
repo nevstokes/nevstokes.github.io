@@ -1,0 +1,35 @@
+{{ define "main" }}
+    <article id="content">
+        <h1>{{ .Params.subtitle | default .Title }}</h1>
+
+        {{ if ne .Type "page" }}
+            {{ partial "meta.html" . }}
+        {{ end }}
+
+        {{ .Content }}
+
+        {{ if .Params.tags }}
+            <p>
+                <svg aria-label="Posted in"><use xlink:href="/symbol-defs.svg#icon-tag"></use></svg>
+                {{ range .Params.tags | sort }}
+                    #<a href="{{ $.Site.LanguagePrefix | absURL }}tags/{{ . | urlize }}/">{{ . }}</a>&nbsp;
+                {{ end }}
+            </p>
+        {{ end }}
+    </article>
+
+    {{ if ne .Type "page" }}
+    <nav>
+    {{ if .PrevInSection }}
+        <a href="{{ .PrevInSection.Permalink }}" title="{{ .PrevInSection.Title }}">&laquo; Previous Post</a>
+    {{ else }}
+        <span aria-disabled="true">&laquo; Previous Posts</span>
+    {{ end }}
+    {{ if .NextInSection }}
+        <a href="{{ .NextInSection.Permalink }}" title="{{ .NextInSection.Title }}">Next Post &raquo;</a>
+    {{ else }}
+        <span aria-disabled="true">Next Post &raquo;</span>
+    {{ end }}
+    </nav>
+    {{ end }}
+{{ end }}

@@ -1,0 +1,8 @@
+{{ $content := trim .Inner "\n" }}
+{{ $lang := .Get 0 }}
+{{ $options := .Get 1 }}
+{{ $snippet := highlight $content $lang $options }}
+{{ $annotated := replaceRE "☃︎(.+?)☃︎" "<$1>" $snippet }}
+{{ $final := replace $annotated "<div class=\"highlight" "<div tabindex=\"0\" aria-label=\"Code sample\" aria-role=\"presentation\" class=\"highlight" }}
+
+{{- $final | safeHTML -}}

@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="{{ .Lang }}">
+    {{- partial "head.html" . -}}
+
+    <a href="#content">Skip to main content</a>
+
+    <main>
+
+        {{- partial "header.html" . -}}
+
+        {{- block "main" . }}{{- end }}
+
+        {{- partial "footer.html" . -}}
+
+    </main>
+</html>

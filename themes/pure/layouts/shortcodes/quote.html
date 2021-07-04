@@ -1,0 +1,6 @@
+<figure>
+    <blockquote>{{.Get "text" }}</blockquote>
+    <figcaption>
+        &mdash; {{.Get "author" | htmlUnescape | safeHTML }}
+    </figcaption>
+</figure>

@@ -1,0 +1,9 @@
+<header>
+    <a href="/">nevstokes.com</a>
+    <nav>
+        {{ range .Site.Menus.main.ByWeight }}
+            <a title="{{ .Name }}" href="{{ .URL  | relLangURL }}">{{ .Name }}</a>
+        {{ end }}
+    </nav>
+</header>
+
